@@ -4,17 +4,16 @@ zMatrix 是一个使用C++编写的图像处理库，它的基础是_Matrix矩�
 
 <br><br>
 
-# 版本
-`V 1.2.2 Beta`
-
-<br><br>
-
 # 特色
 * zMatrix使用类模板来支持各种类型<br>
 * 函数接口尽量和`matlab`和`opencv`类似，zMatrix类可以和openCV中的Mat类转换<br>
 * 使用引用计数来达到自动内存管理的目的，不需要为内存问题担心
 
 <br><br>
+
+# 使用
+* windows平台使用VS2015
+* linux平台，进入zMatrix/modules/build目录,执行`/bin/sh cmake.sh`.
 
 # 已经实现功能
 

@@ -16,7 +16,7 @@
 
 #include <string>
 #include <vector>
-#include "../zcore/zcore.h"
+#include "zcore/zcore.h"
 
 #if defined(OPENCV)
 #include <opencv2/opencv.hpp>
