@@ -1,3 +1,5 @@
-modules/build/bin
-modules/build/lib
-*sh~
+*.sh~
+.vscode/
+.idea/
+bin/
+lib/
