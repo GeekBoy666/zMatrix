@@ -1,5 +1,6 @@
 #include "zgui.h"
-#include "../zimgproc/zimgproc.h"
+#include "zimgproc/zimgproc.h"
+#include <opencv2/opencv.hpp>
 
 namespace z{
 
@@ -9,19 +10,27 @@ namespace z{
  */
 Matrix8u imread(char *filename)
 {
-	Matrix8u temp;
-	//read_JPEG_file(filename, temp);
+	cv::Mat img = cv::imread(filename);
+	Matrix8u temp = Mat2Matrix8u(img);
 	return temp;
 }
 
 void imwrite(char *filename, Matrix8u & img, int quality)
 {
-	Matrix8u rgbimg;
-	cvtColor(img, rgbimg, BGR2RGB);
-
-	//write_JPEG_file(filename, rgbimg, quality);
+	cv::imwrite(filename,cv::Mat(img));
 }
-
+void namedWindow(const std::string & name, int flags)
+{
+    cv::namedWindow(name, flags);
+}
+int waitKey(int delay)
+{
+    return cv::waitKey(delay);
+}
+void imshow(const std::string & name, Matrix8u & mat)
+{
+	cv::imshow(name, cv::Mat(mat));
+}
 
 
 void lineDDA(Matrix8u & img, Point pt1, Point pt2, const Scalar& color, int thickness)

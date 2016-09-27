@@ -13,7 +13,7 @@ zMatrix 是一个使用C++编写的图像处理库，它的基础是_Matrix矩�
 
 # 使用
 * windows平台使用VS2015
-* linux平台，进入zMatrix/modules/build目录,执行`/bin/sh cmake.sh`.
+* linux平台，进入zMatrix/build目录,执行`/bin/sh cmake.sh`.
 
 # 已经实现功能
 
