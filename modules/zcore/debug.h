@@ -13,6 +13,11 @@
 #ifndef _DEBUG_H
 #define _DEBUG_H
 
+
+
+// 是否输出自定义的DEBUG信息
+//#define DEBUG
+
 /**
  * @berif 打印需要的调试信息
  */

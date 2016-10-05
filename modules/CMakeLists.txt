@@ -1,4 +1,3 @@
-add_subdirectory(test)
 add_subdirectory(zcore)
 add_subdirectory(zimgproc)
 add_subdirectory(zgui)

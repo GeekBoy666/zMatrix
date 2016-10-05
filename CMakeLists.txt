@@ -1,3 +1,9 @@
+# --------------------------------------------------------------
+#  Root CMake file for zMatrix
+#
+#     From the off-tree build directory, invoke:
+#       $ cmake <PATH_TO_ZMATRIX_ROOT>
+# --------------------------------------------------------------
 cmake_minimum_required(VERSION 3.5)
 
 project(zMatrix)
@@ -17,6 +23,10 @@ aux_source_directory(. DIR_SRCS)
 add_executable(zMatrix ${DIR_SRCS})
 
 # OpenCV
-find_package(OpenCV REQUIRED)
-
-target_link_libraries(zMatrix  ${OpenCV_LIBS} zgui ztest zimgproc zmatch)
+if (UNIX)
+    message("This is Unix.")
+    find_package(OpenCV REQUIRED)
+    target_link_libraries(zMatrix  ${OpenCV_LIBS} zgui zimgproc zmatch)
+elseif (WIN32)
+    message("This is Windows.")
+endif()

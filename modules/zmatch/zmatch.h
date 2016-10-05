@@ -16,7 +16,7 @@
 
 #include <stddef.h>
 
-#define Pi			((double)3.1415926535898)
+#define Pi			((double)3.14159265358979323)
 
 
 template <typename _Tp> void _min(_Tp *addr, size_t size, _Tp & _min);

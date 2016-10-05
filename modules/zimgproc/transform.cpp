@@ -14,7 +14,6 @@
 #include <cmath>
 #include <stdexcept>
 #include "transform.h"
-#include "test/debug.h"
 
 namespace z {
 

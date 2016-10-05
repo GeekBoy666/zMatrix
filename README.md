@@ -12,8 +12,7 @@ zMatrix 是一个使用C++编写的图像处理库，它的基础是_Matrix矩�
 <br><br>
 
 # 使用
-* windows平台使用VS2015
-* linux平台，进入zMatrix/build目录,执行`/bin/sh cmake.sh`.
+* linux平台，进入zMatrix/build目录,执行`./install.sh`.
 
 # 已经实现功能
 
@@ -27,7 +26,7 @@ zMatrix 是一个使用C++编写的图像处理库，它的基础是_Matrix矩�
 
 ## 图像处理相关
 ### 基础
-* 实现jpeg类图片的读取和写入，以及彩色图片的显示。**(需要其他功能需要使用openCV的函数)**
+* 图片的读取和输出套用的openCV的函数，在linux上未实现；
 * 颜色空间转换，BRG->RGB, GRAY
 
 ### 线性滤波
@@ -46,8 +45,10 @@ zMatrix 是一个使用C++编写的图像处理库，它的基础是_Matrix矩�
 * sobel算子
 * 简单的canny边缘检测（sobel算子），彩色和灰度均可，效果不好
 
-## Kinect 4 Windows v2 （Events）
-* Kinect获取深度、彩色和红外图像，返回Mat类型的数据
+### 离散傅里叶变换
+* dft() 和 idft()
+* fft : 实现了基2快速离散傅里叶变换fft()，ifft未实现
+
 
 <br><br>
 

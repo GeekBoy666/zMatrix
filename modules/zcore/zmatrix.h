@@ -28,7 +28,9 @@ namespace z{
 
 template <class _type> class _Matrix;
 template <class _Tp> class _Size;
+template<class _Tp> class _Rect;
 
+/////////////////////////////////////////_Matrix////////////////////////////////////////////
 typedef _Matrix<double>             Matrix;
 typedef _Matrix<double>             Matrix64f;
 typedef _Matrix<float>              Matrix32f;
@@ -41,6 +43,7 @@ typedef _Matrix<unsigned char>      Matrix8u;
 
 template <class _type> class _Matrix {
 public:
+	//! Constructor functions.
 	_Matrix();
 	_Matrix(int rows, int cols);
 	_Matrix(int rows, int cols,  int channelsNum);
@@ -50,13 +53,8 @@ public:
 	~_Matrix();
 
 	//! allocates new matrix data unless the matrix already has specified size and type.
-	// previous data is unreferenced if needed.
 	void create(int _rows, int _cols, int _chs);
-	//! pointer to the reference counter;
-	// when matrix points to user-allocated data, the pointer is NULL
-	int* refcount;
-	void release();
-	int refAdd(int *addr, int delta);
+	void create(int _rows, int _cols);
 
 	template<typename _Tp2> operator _Matrix<_Tp2>() const;
 
@@ -70,10 +68,11 @@ public:
 	inline const _type* operator[](size_t n) const { return data + n * step; }
 
 
-	//! returns pointer to (i0,i1) submatrix along the dimensions #0 and #1
+	//! 返回指向第i0行数据的指针，超出范围返回nullptr
 	_type* ptr(int i0);
 	const _type* ptr(int i0) const;
 
+	//! returns pointer to (i0,i1) submatrix along the dimensions #0 and #1
 	_type* ptr(int i0, int i1);
 	const _type* ptr(int i0, int i1) const;
 
@@ -115,6 +114,8 @@ public:
 
 	inline int channels() { return chs; }
 
+	int swap(int32_t i0, int32_t j0, int32_t i1, int32_t j1);
+
 	
 	int rows, cols;
 	_type *data;
@@ -125,7 +126,11 @@ public:
 private:
 	size_t _size;
 
-	
+	//! pointer to the reference counter;
+	// when matrix points to user-allocated data, the pointer is NULL
+	int* refcount;
+	void release();
+	int refAdd(int *addr, int delta);
 
 	void initEmpty();
 };
@@ -150,11 +155,35 @@ template <class _type> _Matrix<_type> operator-(_type delta, _Matrix<_type> &m);
 template <class _type> void conv(_Matrix<_type> &src, _Matrix<_type> &dst, Matrix &core);
 
 
+/////////////////////////////////////////_Complex_////////////////////////////////////////////
+template <class _Tp> class _Complex_
+{
+public:
+    _Complex_();
+    _Complex_(_Tp _re, _Tp _im);
+    _Complex_(const _Complex_ & c);
+    _Complex_ &operator=(const _Complex_ &c);
+
+    _Complex_<_Tp>& operator+=(const _Complex_<_Tp> & c);
+    _Complex_<_Tp>& operator-=(const _Complex_<_Tp> & c);
+
+    _Tp re, im;
+};
+template <class _Tp> bool operator ==(const _Complex_<_Tp> & c1, const _Complex_<_Tp> &c2);
+template <class _Tp> bool operator !=(const _Complex_<_Tp> & c1, const _Complex_<_Tp> &c2);
+template <class _Tp> _Complex_<_Tp> operator * (const _Complex_<_Tp> & c1, const _Complex_<_Tp> &c2);
+template <class _Tp> _Complex_<_Tp> operator + (const _Complex_<_Tp> & c1, const _Complex_<_Tp> &c2);
+template <class _Tp> _Complex_<_Tp> operator - (const _Complex_<_Tp> & c1, const _Complex_<_Tp> &c2);
+
+template <class _Tp> std::ostream & operator <<(std::ostream & os, const _Complex_<_Tp> & c);
 
 
+typedef _Complex_<signed char> Complex8s;
+typedef _Complex_<signed int> Complex32s;
+typedef _Complex_<float> Complex32f;
+typedef _Complex_<double> Complex64f;
+typedef Complex64f Complex;
 
-template<class _Tp> class _Rect;
-template<class _Tp> class _Size;
 /////////////////////////////////////////_Point////////////////////////////////////////////
 template<class _Tp> class _Point
 {
@@ -342,7 +371,7 @@ template<class _Tp> inline _Tp _Size<_Tp>::area() const { return width * height;
 
 typedef _Size<int>      Size2i;
 typedef _Size<double>   Size2d;
-typedef _Size<float>    Sizef;
+typedef _Size<float>    Size2f;
 typedef _Size<int>      Size;
 
 
