@@ -11,8 +11,23 @@ zMatrix 是一个使用C++编写的图像处理库，它的基础是_Matrix矩�
 
 <br><br>
 
-# 使用
-* linux平台，进入zMatrix/build目录,执行`./install.sh`.
+# 使用(Linux)
+* 在根目录下新建build文件夹并进入
+* 执行
+```
+    cmake -DCMAKE_INSTALL_PREFIX=/usr .. 
+    make
+    sudo make install
+```
+* 头文件在/usr/include，库文件在/usr/lib
+### 测试
+* 进入zMatrix/samples/build
+* 执行
+```
+    cmake ..
+    make
+```
+* 进入zMatrix/samples/bin目录下，执行dft或showImage测试是否成功
 
 # 已经实现功能
 
